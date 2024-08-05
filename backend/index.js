@@ -42,3 +42,21 @@ app.post("/blog_post_event", async (req, res) => {
   }
   res.send(200);
 });
+
+app.post("/archive_posts", async (req, res) => {
+  const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {});
+  const { age_in_second } = req.body.input;
+  const query = `
+  UPDATE blog_post
+  SET is_published = false
+  WHERE date < NOW() - INTERVAL '${age_in_second} second';
+`;
+  const [result, metadata] = await sequelize.query(query, {
+    replacements: {
+      age_in_second,
+    },
+  });
+  res.status(200).json({
+    count: metadata.rowCount,
+  });
+});
