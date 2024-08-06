@@ -41,3 +41,24 @@ docker-compose up
 use node 16
 
 Added Actions in Auth0, for user authentication
+
+docker migrations
+
+For seed:
+# Create a new seed by exporting data from tables already present in the database:
+hasura seed create table1_seed --from-table table1
+hasura seed apply
+
+For migrations:
+only use hasura migration create .... command for first migration only afterwards use the image 
+ 
+ ```
+ image: hasura/graphql-engine:v2.40.0.cli-migrations-v3
+    ports:
+      - "8080:8080"
+    volumes:
+    - ./hasura/migrations:/hasura-migrations
+    - ./hasura/metadata:/hasura-metadata
+Testing:
+docker-compose down -v (It will remove the images too and clear the database altogether)
+docker-compose up -d
