@@ -39,3 +39,5 @@ docker-compose up
 
 
 use node 16
+
+Added Actions in Auth0, for user authentication

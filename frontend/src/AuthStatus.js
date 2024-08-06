@@ -9,7 +9,7 @@ const style = {
 
 export const AuthStatus = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-
+console.log("isAuthenticatedisAuthenticated",isAuthenticated)
     if (isLoading) {
         return <div style={style}>Loading ...</div>;
     }

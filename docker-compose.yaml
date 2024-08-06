@@ -27,7 +27,11 @@ services:
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
       HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
-      HASURA_GRAPHQL_JWT_SECRET: '{"jwk_url":"https://dev-hy75ehsplicag2bb.us.auth0.com/.well-known/jwks.json"}'
+      HASURA_GRAPHQL_JWT_SECRET: >
+        {
+          "jwk_url": "https://dev-hy75ehsplicag2bb.us.auth0.com/.well-known/jwks.json",
+          "allowed_skew": 60
+        }
 volumes:
   db_data:
 
